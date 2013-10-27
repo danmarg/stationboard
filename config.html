@@ -15,24 +15,38 @@
     <script src="js/config.js"></script>
   </head>
 
-  <body onload="$('#remove').hide();">
+  <body>
     <div class="wrapper">
       <h1>
         Options
       </h1>
       <form action="javascript://" onsubmit="set_configuration();">
+        <h2>Timetables</h2>
         <div id="stations">
           <div id="station0">
             Station: <input type="text" name="s" />
             Show next: <input type="number" name="l" value="4" size="2"/>
           </div>
         </div>
-        <div id="add_remove">
-          <a href="javascript://" id="remove" onclick="remove_station();">-</a>
-          <a href="javascript://" id="add" onclick="add_station();">+</a>
+        <div id="add_remove_station">
+          <a href="javascript://" id="remove_station" onclick="remove_station();">-</a>
+          <a href="javascript://" id="add_station" onclick="add_station();">+</a>
+        </div>
+        <br/>
+        <h2>Routes</h2>
+        <div id="routes">
+          <div id="route0">
+            Von: <input type="text" name="v" />
+            Nach: <input type="text" name="n" />
+          </div>
+        </div>
+        <div id="add_remove_route">
+          <a href="javascript://" id="remove_route" onclick="remove_route();">-</a>
+          <a href="javascript://" id="add_route" onclick="add_route();">+</a>
         </div>
         <br/>
         <button >OK</button>
+        <br/>
         <div id="config_link">
         </div>
       </form>
