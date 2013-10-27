@@ -80,7 +80,7 @@ function remove_route() {
 
 
 function set_configuration() {
-  var url = location.protocol + "//" + location.host + "/?config=" + encodeURIComponent(JSON.stringify(generate_config()));
+  var url = location.protocol + "//" + location.host + "/?c=" + encodeURIComponent(JSON.stringify(generate_config()));
   $("#config_link").empty();
   $("#config_link").append('Click or bookmark this link: <a href="' +
       url + '">' + url + '</a>.');

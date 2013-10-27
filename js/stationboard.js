@@ -14,7 +14,7 @@
 
 $(function() {
 
-  var config = $.QueryString['config'];
+  var config = $.QueryString['c'];
   if (config && config.length > 0) {
     config = JSON.parse(config);
     for (var i = 0; i < config.stations.length; i++) {
