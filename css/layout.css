@@ -1,0 +1,39 @@
+h1 {
+  color: red;
+  font-weight: bold;
+}
+
+thead {
+  text-decoration: underline;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+  height: 100%;
+}
+
+.station {
+  color: red;
+  font-weight: bold;
+}
+
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  /* equal to .footer height */
+  margin-bottom: -142px; 
+}
+.wrapper:after {
+  content: "";
+  display: block;
+}
+.footer, .wrapper:after {
+  /* must be the same height as definedin .wrapper */
+  height: 142px; 
+}
+.footer {
+  text-align: center;
+}
