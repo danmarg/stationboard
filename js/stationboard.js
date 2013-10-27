@@ -41,6 +41,7 @@ $(function() {
     return id.replace(/[^a-zA-Z0-9]/g, '_');
   }
   function refresh() {
+    $('#clock').text(moment().format('H:mm'));
     for (var i = 0; i < stations.length; i++) {
       station = stations[i];
       get_station(station);
@@ -51,7 +52,7 @@ $(function() {
     var table = '<div id="' + normalize(station) + '">' +
       '<h3 class="station">' + station + '</h3>' +
       '<table>' +
-      '<colgroup><col width="120"><col width="140"><col width="230"></colgroup>' +
+      '<colgroup><col width="150"><col width="150"><col width="250"><col width="250"></colgroup>' +
       '<thead><tr><th align="left">Zeit</th>' +
       '<th align="left">Route</th>' +
       '<th align="left">Von</th>' +
