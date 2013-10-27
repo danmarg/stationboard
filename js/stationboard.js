@@ -14,11 +14,20 @@
 
 $(function() {
   
-  var stations = ($.QueryString['stations'] || 'Zürich HB').split(';');
-  var limit = $.QueryString['limit'] || 8;
+  var config = $.QueryString['config'];
+  if (config && config.length > 0) {
+    config = JSON.parse(config);
+  } else {
+    config = {'stations':{}};
+  }
+  var size = 0;
+  for (var station in config.stations) { size++; }
+  if (size == 0) {
+    config.stations['Zürich HB'] = 8;
+  }
 
-  function get_station(station) {
-    $.get('http://transport.opendata.ch/v1/stationboard', {id: station, limit: limit}, function(data) {
+  function get_timetable(station) {
+    $.get('http://transport.opendata.ch/v1/stationboard', {id: station, limit: config.stations[station]}, function(data) {
       $('#' + normalize(station) + ' tbody').empty();
       $(data.stationboard).each(function () {
         var prognosis, departure, delay, line = '<tr><td>';
@@ -42,13 +51,11 @@ $(function() {
   }
   function refresh() {
     $('#clock').text(moment().format('H:mm'));
-    for (var i = 0; i < stations.length; i++) {
-      station = stations[i];
-      get_station(station);
+    for (var station in config.stations) {
+      get_timetable(station);
     }
   }
-  for (var i = 0; i < stations.length; i++) {
-    station = stations[i];
+  for (var station in config.stations) {
     var table = '<div id="' + normalize(station) + '">' +
       '<h3 class="station">' + station + '</h3>' +
       '<table>' +
