@@ -136,6 +136,7 @@ $(function() {
   // Weather
   for (var i = 0; i < config.weather.length; i++) {
     var loc = config.weather[i];
+    console.log('here');
     $.simpleWeather({
       location: loc,
       unit: 'c',
