@@ -142,11 +142,11 @@ $(function() {
       success: function(weather) {
         var html = '<h3 class="station">' + weather.city +'</h3>' +
           '<p>' +
-          '<b>Currently: </b>' + weather.temp + '&deg;' + weather.units.temp +
-          '<b>High: </b>' + weather.high + '&deg;' + weather.units.temp +
-          '<b>Low: </b>' + weather.low + '&deg;' + weather.units.temp +
+          '<b>Now: </b>' + weather.temp + '&deg;' + weather.units.temp +
+          ' <b>High: </b>' + weather.high + '&deg;' + weather.units.temp +
+          ' <b>Low: </b>' + weather.low + '&deg;' + weather.units.temp +
           // First day of forceast.
-          '<br/><b>Today:</b>' + weather.forecast[0].text +
+          '<br/><b>Today:</b> ' + weather.forecast[0].text +
           '</p>';
         $("#weather").html(html);
     },
