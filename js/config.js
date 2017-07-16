@@ -34,7 +34,8 @@ function generate_config() {
   $('#routes div').each(function() {
     von = $(this).children('input[name=v]')[0].value;
     nach = $(this).children('input[name=n]')[0].value;
-    config.routes.push({'von': von, 'nach': nach});
+    limit = $(this).children('input[name=l]')[0].value
+    config.routes.push({'von': von, 'nach': nach, 'limit': limit});
   });
 
   return config;
@@ -62,8 +63,9 @@ function remove_station() {
 function add_route() {
   var idx = $('#routes>div').length;
   $('#routes').append('<div id="route' + idx + '"> ' +
-      'Von: <input type="text" name="v" />' +
-      'Nach: <input type="text" name="n" /> ' +
+      'From: <input type="text" name="v" />' +
+      'To: <input type="text" name="n" /> ' +
+      'Show next: <input type="number" name="l" value="4" size="2"/>' +
       '</div>');
   
   set_autocomplete();

@@ -59,8 +59,8 @@ $(function() {
       });
       }, 'json');
   }
-  function get_route(from, to) {
-    $.get('https://transport.opendata.ch/v1/connections', {from: from, to: to}, function(data) {
+  function get_route(from, to, limit) {
+    $.get('https://transport.opendata.ch/v1/connections', {from: from, to: to, limit: limit}, function(data) {
        var id = '#' + normalize(from) + '-' + normalize(to) + ' tbody';
        $(id).empty();
        $(data.connections).each(function() {
@@ -100,7 +100,7 @@ $(function() {
       get_timetable(config.stations[i].station, config.stations[i].limit);
     }
     for (var i = 0; i < config.routes.length; i++) {
-      get_route(config.routes[i].von, config.routes[i].nach);
+      get_route(config.routes[i].von, config.routes[i].nach, config.routes[i].limit);
     }
   }
   // Station boards
