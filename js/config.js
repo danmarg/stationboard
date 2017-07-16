@@ -35,10 +35,9 @@ function generate_config() {
     von = $(this).children('input[name=v]')[0].value;
     nach = $(this).children('input[name=n]')[0].value;
     limit = $(this).children('input[name=l]')[0].value
-    config.routes.push({'von': von, 'nach': nach, 'limit': limit});
   });
   $('#weather input').each(function() {
-    config.routes.push({'loc': $(this).value});
+    config.weather.push({'loc': $(this).value});
   });
 
   return config;
