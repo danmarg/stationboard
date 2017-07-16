@@ -17,18 +17,6 @@ $(function() {
   var config = $.QueryString['c'];
   if (config && config.length > 0) {
     config = JSON.parse(config);
-    for (var i = 0; i < config.stations.length; i++) {
-      if (config.stations[i].station == '') {
-        config.stations.splice(i, 1);
-        i--;
-      } 
-    }
-    for (var i = 0; i < config.routes.length; i++) {
-      if (config.routes[i].von == '') {
-        config.routes.splice(i, 1);
-        i--;
-      }
-    }
   } else {
     config = {'stations':[], 'routes':[], 'weather':[]};
   }
@@ -116,7 +104,7 @@ $(function() {
       '<th align="left">Nach</th>' +
       '</tr></thead>' +
       '<tbody></tbody></table></div>';
-    $('#stationboard').html(table);
+    $('#stationboard').append(table);
   }
   // Routes
   for (var i = 0; i < config.routes.length; i++) {
@@ -131,7 +119,7 @@ $(function() {
       '<th align="left">Ankunftszeit</th>' +
       '</tr></thead>' +
       '<tbody></tbody></table></div>';
-    $('#routes').html(table);
+    $('#routes').append(table);
   }
   // Weather
   for (var i = 0; i < config.weather.length; i++) {
