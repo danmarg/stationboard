@@ -20,13 +20,10 @@ body {
   font-weight: bold;
 }
 
-.clock {
-  color: red;
-  font-weight: bold;
-}
-
 #clock {
   float: right;
+  color: red;
+  font-weight: bold;
 }
 
 html, body {
