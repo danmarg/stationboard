@@ -36,8 +36,8 @@ function generate_config() {
     nach = $(this).children('input[name=n]')[0].value;
     limit = $(this).children('input[name=l]')[0].value
   });
-  $('#weather input').each(function() {
-    config.weather.push({'loc': $(this).value});
+  $('#weather input').each(function(_, v) {
+    config.weather.push({'loc': v.value});
   });
 
   return config;
