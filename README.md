@@ -1,1 +1,1 @@
-It's this thing: http://stationboard.af0.net/
+It's [this](https://danmarg.github.io/stationboard/) thing.
