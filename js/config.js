@@ -2,7 +2,7 @@
 function set_autocomplete() {
   $('input[name=s], input[name=v], input[name=n]').autocomplete({
     source: function(request, response) {
-              $.get('http://transport.opendata.ch/v1/locations', {query: request.term, type: 'station'}, function(data) {
+              $.get('https://transport.opendata.ch/v1/locations', {query: request.term, type: 'station'}, function(data) {
                 response($.map(data.stations, function(station) {
                   return {
                     label: station.name,

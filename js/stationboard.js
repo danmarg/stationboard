@@ -40,7 +40,7 @@ $(function() {
   }
 
   function get_timetable(station, limit) {
-    $.get('http://transport.opendata.ch/v1/stationboard', {id: station, limit: limit}, function(data) {
+    $.get('https://transport.opendata.ch/v1/stationboard', {id: station, limit: limit}, function(data) {
       $('#' + normalize(station) + ' tbody').empty();
       $(data.stationboard).each(function () {
         var prognosis, departure, delay, line = '<tr><td>';
@@ -60,7 +60,7 @@ $(function() {
       }, 'json');
   }
   function get_route(from, to) {
-    $.get('http://transport.opendata.ch/v1/connections', {from: from, to: to}, function(data) {
+    $.get('https://transport.opendata.ch/v1/connections', {from: from, to: to}, function(data) {
        var id = '#' + normalize(from) + '-' + normalize(to) + ' tbody';
        $(id).empty();
        $(data.connections).each(function() {
