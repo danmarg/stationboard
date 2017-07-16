@@ -116,7 +116,7 @@ $(function() {
       '<th align="left">Nach</th>' +
       '</tr></thead>' +
       '<tbody></tbody></table></div>';
-    $('#stationboard').append(table);
+    $('#stationboard').html(table);
   }
   // Routes
   for (var i = 0; i < config.routes.length; i++) {
@@ -131,9 +131,27 @@ $(function() {
       '<th align="left">Ankunftszeit</th>' +
       '</tr></thead>' +
       '<tbody></tbody></table></div>';
-    $('#routes').append(table);
-
+    $('#routes').html(table);
   }
+  // Weather
+  if (config.weather) {
+    $.simpleWeather({
+      location: config.weather,
+      unit: 'c',
+      success: function(weather) {
+        var html = '<h3>' + weather.temp + '&deg;' + weather.units.temp + '</h3>' +
+          '<p>' +
+          '<b>' + weather.city + ', ' + weather.region + '</b>' +
+          '<br/>' + weather.currently +
+          // First day of forceast.
+          '<br/>' + weather.forecast[0].day + ': ' +
+        weather.forecast[0].text + '</p>';
+        $("#weather").html(html);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
+    }
+  });
 
   setInterval(refresh, 30000);
   refresh();
