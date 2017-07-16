@@ -29,15 +29,22 @@ function generate_config() {
   $('#stations div').each(function() {
     station = $(this).children('input[name=s]')[0].value;
     limit = $(this).children('input[name=l]')[0].value;
-    config.stations.push({'station': station, 'limit': limit});
+    if (station != "" && limit > 0) {
+      config.stations.push({'station': station, 'limit': limit});
+    }
   });
   $('#routes div').each(function() {
     von = $(this).children('input[name=v]')[0].value;
     nach = $(this).children('input[name=n]')[0].value;
     limit = $(this).children('input[name=l]')[0].value
+    if (von != "" && nach != "" && limit > 0) {
+      config.routes.push({'von': von, 'nach': nach, 'limit': limit});
+    }
   });
   $('#weather input').each(function(_, v) {
-    config.weather.push(v.value);
+    if (v.value != "") {
+      config.weather.push(v.value);
+    }
   });
 
   return config;
