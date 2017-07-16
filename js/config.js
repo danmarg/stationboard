@@ -37,9 +37,8 @@ function generate_config() {
     limit = $(this).children('input[name=l]')[0].value
     config.routes.push({'von': von, 'nach': nach, 'limit': limit});
   });
-  $('#weather div').each(function() {
-    loc = $(this).children('input')[0].value;
-    config.routes.push({'loc': loc});
+  $('#weather input').each(function() {
+    config.routes.push({'loc': $(this).value});
   });
 
   return config;
