@@ -24,7 +24,7 @@ $(function() {
 })
 
 function generate_config() {
-  config = {'stations': [], 'routes':[] };
+  config = {'stations': [], 'routes':[], weather:null };
   var station;
   $('#stations div').each(function() {
     station = $(this).children('input[name=s]')[0].value;
@@ -37,6 +37,7 @@ function generate_config() {
     limit = $(this).children('input[name=l]')[0].value
     config.routes.push({'von': von, 'nach': nach, 'limit': limit});
   });
+  config.weather = $('#weather div').first().children('input')[0].value;
 
   return config;
 }
