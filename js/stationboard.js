@@ -152,7 +152,8 @@ $(function() {
     error: function(error) {
       $("#weather").html('<p>'+error+'</p>');
     }
-  });
+    });
+  }
 
   setInterval(refresh, 30000);
   refresh();
