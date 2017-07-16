@@ -24,7 +24,7 @@ $(function() {
 })
 
 function generate_config() {
-  config = {'stations': [], 'routes':[] };
+  config = {'stations': [], 'routes':[], weather:[] };
   var station;
   $('#stations div').each(function() {
     station = $(this).children('input[name=s]')[0].value;
@@ -36,6 +36,10 @@ function generate_config() {
     nach = $(this).children('input[name=n]')[0].value;
     limit = $(this).children('input[name=l]')[0].value
     config.routes.push({'von': von, 'nach': nach, 'limit': limit});
+  });
+  $('#weather div').each(function() {
+    loc = $(this).children('input')[0].value;
+    config.routes.push({'loc': loc});
   });
 
   return config;
