@@ -30,7 +30,7 @@ $(function() {
       }
     }
   } else {
-    config = {'stations':[], 'routes':[]};
+    config = {'stations':[], 'routes':[], 'weather':[]};
   }
   if (config.stations.length == 0 && config.routes.length == 0) {
     config.stations.push({'station': 'Zürich HB', 'limit': 8});
