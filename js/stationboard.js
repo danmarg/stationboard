@@ -53,7 +53,6 @@ $(function() {
     var t = new Date(Date.now() + add_minutes*60000);
     var date = t.getFullYear() + '-' + (t.getMonth()+1) + '-' + t.getDate();
     var time = t.getHours() + ':' + t.getMinutes();
-    console.log('DATE: ' + date + ' TIME: ' + time);
     $.get('https://transport.opendata.ch/v1/connections', {
         from: from,
         to: to,

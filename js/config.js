@@ -39,7 +39,7 @@ $(function() {
   if (config && config.length > 0) {
     config = JSON.parse(config);
   } else {
-    config = {'stations':[], 'routes':[], 'weather':[]};
+    config = {'stations':[], 'routes':[], 'weather':[], 'display':[]};
   }
   load_config(config);
 })
@@ -48,13 +48,13 @@ function generate_config() {
   config = {'stations': [], 'routes':[], 'weather':[],'display':[]};
   for (var key in config) {
     $('#' + key).each(function(){
-      var v = Object();
       $(this).children('div').each(function(){
+        var v = Object();
         $(this).children('input').each(function(){
           v[$(this).attr('name')] = $(this).val();
         });
+        config[key].push(v);
       });
-      config[key].push(v);       
     });
   }
   return config;
@@ -77,6 +77,7 @@ function load_config(config) {
     s.children('input[name=v]').val(v.v);
     s.children('input[name=n]').val(v.n);
     s.children('input[name=l]').val(v.l);
+    s.children('input[name=m]').val(v.m);
   }
   if (config.weather != null && config.weather.length) {
     $('#weather0>input[name=l]').val(config.weather[0].l);
