@@ -156,7 +156,7 @@ $(function() {
     document.documentElement.style = 'filter: invert(100%); background-color: black;';
   }
 
-  setInterval(refresh, 30000);
+  setInterval(refresh, 120000);
   refresh();
 });
 
