@@ -21,11 +21,13 @@ $(function() {
     config = {'stations':[], 'routes':[], 'weather':[]};
   }
   if (config.stations.length == 0 && config.routes.length == 0) {
-    config.stations.push({'station': 'Zürich HB', 'limit': 8});
+    config.stations.push({'s': 'Zürich HB', 'l': 8});
     $('#routes').hide();
   } else if (config.stations.length == 0) {
     $('#stationboard').hide();
   }
+
+  $('#config').attr('href', 'config.html?c=' + JSON.stringify(config));
 
   function get_timetable(station, limit) {
     $.get('https://transport.opendata.ch/v1/stationboard', {id: station, limit: limit}, function(data) {
@@ -85,15 +87,18 @@ $(function() {
   function refresh() {
     $('#clock').text(moment().format('H:mm'));
     for (var i = 0; i < config.stations.length; i++) {
-      get_timetable(config.stations[i].station, config.stations[i].limit);
+      if (config.stations[i].s == null) continue;
+      get_timetable(config.stations[i].s, config.stations[i].l);
     }
     for (var i = 0; i < config.routes.length; i++) {
-      get_route(config.routes[i].von, config.routes[i].nach, config.routes[i].limit);
+      if (config.routes[i].v == null || config.routes[i].n == null) continue;
+      get_route(config.routes[i].v, config.routes[i].n, config.routes[i].l);
     }
   }
   // Station boards
   for (var i = 0; i < config.stations.length; i++) {
-    var station = config.stations[i].station;
+    var station = config.stations[i].s;
+    if (station == null) continue;
     var table = '<div id="' + normalize(station) + '">' +
       '<h3 class="station">' + station + '</h3>' +
       '<table>' +
@@ -109,9 +114,10 @@ $(function() {
   // Routes
   for (var i = 0; i < config.routes.length; i++) {
     var route = config.routes[i];
-    var id = normalize(route.von) + '-' + normalize(route.nach);
+    if (route.v == null || route.n == null) continue;
+    var id = normalize(route.v) + '-' + normalize(route.n);
     var table = '<div id="' + id + '">' +
-      '<h3 class="station">' + route.von + ' &rarr; ' + route.nach + '</h3>' +
+      '<h3 class="station">' + route.v + ' &rarr; ' + route.n + '</h3>' +
       '<table>' +
       '<colgroup><col width="150"><col width="500"><col width="150"></colgroup>' +
       '<thead><tr><th align="left">Abfahrtszeit</th>' +
@@ -123,7 +129,8 @@ $(function() {
   }
   // Weather
   for (var i = 0; i < config.weather.length; i++) {
-    var loc = config.weather[i];
+    var loc = config.weather[i].l;
+    if (loc == null || loc.length == 0) continue;
     $.simpleWeather({
       location: loc,
       unit: 'c',
@@ -144,7 +151,7 @@ $(function() {
     });
   }
   // Display
-  if (config.display.invert) {
+  if (config.display != null && config.display.length > 0 && config.display[0]['i'] == 'on') {
     // Invert colors.
     document.documentElement.style = 'filter: invert(100%); background-color: black;';
   }
