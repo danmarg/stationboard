@@ -49,8 +49,18 @@ $(function() {
       });
       }, 'json');
   }
-  function get_route(from, to, limit) {
-    $.get('https://transport.opendata.ch/v1/connections', {from: from, to: to, limit: limit}, function(data) {
+  function get_route(from, to, limit, add_minutes) {
+    var t = new Date(Date.now() + add_minutes*60000);
+    var date = t.getFullYear() + '-' + (t.getMonth()+1) + '-' + t.getDate();
+    var time = t.getHours() + ':' + t.getMinutes();
+    console.log('DATE: ' + date + ' TIME: ' + time);
+    $.get('https://transport.opendata.ch/v1/connections', {
+        from: from,
+        to: to,
+        limit: limit,
+        date: date,
+        time: time,
+        }, function(data) {
        var id = '#' + normalize(from) + '-' + normalize(to) + ' tbody';
        $(id).empty();
        $(data.connections).each(function() {
@@ -92,7 +102,7 @@ $(function() {
     }
     for (var i = 0; i < config.routes.length; i++) {
       if (config.routes[i].v == null || config.routes[i].n == null) continue;
-      get_route(config.routes[i].v, config.routes[i].n, config.routes[i].l);
+      get_route(config.routes[i].v, config.routes[i].n, config.routes[i].l, config.routes[i].m);
     }
   }
   // Station boards

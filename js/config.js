@@ -110,8 +110,9 @@ function add_route() {
   var idx = $('#routes>div').length;
   $('#routes').append('<div id="route' + idx + '"> ' +
       'From: <input type="text" name="v" />' +
-      'To: <input type="text" name="n" /> ' +
-      'Show next: <input type="number" name="l" value="4" size="2"/>' +
+      'To: <input type="text" name="n" />' +
+      'Show next: <input type="number" name="l" value="4" max="10"/>' +
+      'Add minutes to departure: <input type="number" name="m" value="0" max="120"/>' +
       '</div>');
   
   set_autocomplete();
