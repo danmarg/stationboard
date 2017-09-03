@@ -49,7 +49,7 @@ function generate_config() {
   for (var key in config) {
     $('#' + key).each(function(){
       $(this).children('div').each(function(){
-        var v = Object();
+        var v = {};
         $(this).children('input').each(function(){
           v[$(this).attr('name')] = $(this).val();
         });
