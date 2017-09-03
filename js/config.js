@@ -24,7 +24,7 @@ $(function() {
 })
 
 function generate_config() {
-  config = {'stations': [], 'routes':[], weather:[] };
+  config = {'stations': [], 'routes':[], 'weather':[],'display':{} };
   var station;
   $('#stations div').each(function() {
     station = $(this).children('input[name=s]')[0].value;
@@ -46,6 +46,7 @@ function generate_config() {
       config.weather.push(v.value);
     }
   });
+  config.display['invert'] = $('#display input:checked').val() == 'on';
 
   return config;
 }

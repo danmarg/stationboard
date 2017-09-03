@@ -143,6 +143,11 @@ $(function() {
     }
     });
   }
+  // Display
+  if (config.display.invert) {
+    // Invert colors.
+    document.documentElement.style = 'filter: invert(100%); background-color: black;';
+  }
 
   setInterval(refresh, 30000);
   refresh();
